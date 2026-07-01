@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhivyashree V — Full Stack Developer</title>
+<meta name="description" content="Portfolio of Your Name, Full Stack Developer. Projects, skills, and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-raised: #131a24;
+    --border: #232b36;
+    --text: #e7ecf2;
+    --text-dim: #93a0b3;
+    --accent: #f0b429;
+    --accent-dim: #a97f1d;
+    --green: #5fd48a;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection { background: var(--accent); color: #0d1117; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: var(--mono); font-weight: 700; font-size: 1.05rem;
+    color: var(--text);
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; font-family: var(--mono); font-size: 0.85rem; }
+  .nav-links a { color: var(--text-dim); transition: color 0.2s; position: relative; }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
+  .nav-links a::before { content: attr(data-num); color: var(--accent); margin-right: 6px; }
+  .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    padding: 120px 0 100px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(240,180,41,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .eyebrow {
+    font-family: var(--mono); color: var(--green); font-size: 0.85rem;
+    display: flex; align-items: center; gap: 8px; margin-bottom: 24px;
+  }
+  .eyebrow .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+    box-shadow: 0 0 0 0 rgba(95,212,138,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(95,212,138,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(95,212,138,0); }
+    100% { box-shadow: 0 0 0 0 rgba(95,212,138,0); }
+  }
+  .hero h1 {
+    font-family: var(--mono); font-weight: 800;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    line-height: 1.15; letter-spacing: -0.02em;
+    max-width: 780px;
+  }
+  .hero h1 .hl { color: var(--accent); }
+  .hero p.sub {
+    margin-top: 24px; font-size: 1.15rem; color: var(--text-dim);
+    max-width: 560px;
+  }
+  .terminal {
+    margin-top: 44px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    max-width: 560px;
+    font-family: var(--mono);
+    font-size: 0.88rem;
+    overflow: hidden;
+  }
+  .terminal-bar {
+    display: flex; gap: 7px; padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-bar span { width: 11px; height: 11px; border-radius: 50%; background: #3a4453; }
+  .terminal-body { padding: 18px; color: var(--text-dim); }
+  .terminal-body .line { margin-bottom: 6px; }
+  .terminal-body .prompt { color: var(--green); }
+  .terminal-body .out { color: var(--text); }
+  .caret {
+    display: inline-block; width: 8px; height: 1em; background: var(--accent);
+    vertical-align: text-bottom; animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-cta { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono); font-size: 0.9rem; font-weight: 500;
+    padding: 13px 24px; border-radius: 6px; border: 1px solid var(--border);
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary { background: var(--accent); color: #0d1117; border-color: var(--accent); font-weight: 700; }
+  .btn-primary:hover, .btn-primary:focus-visible { background: #ffc94a; }
+  .btn-ghost { color: var(--text); }
+  .btn-ghost:hover, .btn-ghost:focus-visible { border-color: var(--text-dim); background: var(--bg-raised); }
+
+  /* SECTION HEADER */
+  .section { padding: 90px 0; border-bottom: 1px solid var(--border); }
+  .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 48px; }
+  .section-head .idx { font-family: var(--mono); color: var(--accent); font-size: 0.95rem; }
+  .section-head h2 { font-family: var(--mono); font-size: 1.7rem; font-weight: 700; }
+  .section-head::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 6px; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; }
+  .about-grid p { color: var(--text-dim); margin-bottom: 16px; font-size: 1.02rem; }
+  .about-grid p strong { color: var(--text); font-weight: 600; }
+
+  .skills-block h3 {
+    font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px;
+  }
+  .skills-block { margin-bottom: 28px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    font-family: var(--mono); font-size: 0.82rem;
+    background: var(--bg-raised); border: 1px solid var(--border);
+    padding: 6px 12px; border-radius: 5px; color: var(--text);
+  }
+
+  /* PROJECTS */
+  .project-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+  .project {
+    background: var(--bg); padding: 32px; display: grid;
+    grid-template-columns: 100px 1fr; gap: 24px; transition: background 0.25s;
+  }
+  .project:hover { background: var(--bg-raised); }
+  .project-num { font-family: var(--mono); color: var(--accent-dim); font-size: 0.85rem; }
+  .project h3 {
+    font-family: var(--mono); font-size: 1.2rem; margin-bottom: 8px; color: var(--text);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.68rem; font-family: var(--mono); background: rgba(95,212,138,0.12);
+    color: var(--green); padding: 3px 8px; border-radius: 4px; font-weight: 600;
+  }
+  .project p { color: var(--text-dim); margin-bottom: 14px; max-width: 620px; }
+  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tag { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); }
+  .tag::before { content: '#'; color: var(--accent-dim); }
+  .project-links { display: flex; gap: 20px; }
+  .project-links a { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid transparent; }
+  .project-links a:hover, .project-links a:focus-visible { border-color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .project { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  /* CONTACT */
+  .contact-inner { text-align: center; max-width: 620px; margin: 0 auto; }
+  .contact-inner h2 {
+    font-family: var(--mono); font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-bottom: 18px; font-weight: 800;
+  }
+  .contact-inner .hl { color: var(--accent); }
+  .contact-inner > p { color: var(--text-dim); margin-bottom: 40px; font-size: 1.05rem; }
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  footer {
+    padding: 32px 0; text-align: center;
+    font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim);
+  }
+  footer .heart { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">yourname<span>.dev</span></a>
+    <div class="nav-links">
+      <a href="#about" data-num="01">about</a>
+      <a href="#skills" data-num="02">skills</a>
+      <a href="#projects" data-num="03">projects</a>
+      <a href="#contact" data-num="04">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>available for opportunities</div>
+    <h1>Hi, I'm <span class="hl">Dhivyashree V</span> —<br>I build full-stack web applications.</h1>
+    <p class="sub">Full Stack Web Development intern at Future Interns. I design and ship clean, responsive, end-to-end products — from database to interface.</p>
+
+    <div class="terminal" aria-hidden="true">
+      <div class="terminal-bar"><span></span><span></span><span></span></div>
+      <div class="terminal-body">
+        <div class="line"><span class="prompt">$</span> whoami</div>
+        <div class="line out">Dhivyashree V — Full Stack Developer</div>
+        <div class="line"><span class="prompt">$</span> cat stack.txt</div>
+        <div class="line out">HTML · CSS · JavaScript · Node.js · MongoDB</div>
+        <div class="line"><span class="prompt">$</span> <span class="caret"></span></div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="idx">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I'm <strong>Dhivyashree V</strong>, a full-stack web developer currently interning with <strong>Future Interns</strong>, where I build production-style applications end to end — from data models to polished interfaces.</p>
+        <p>I care about writing code that's readable and maintainable, not just code that works. I like taking a project from a blank file to something a real user could open and understand in five seconds.</p>
+        <p>Outside of assigned work, I'm exploring <strong>system design, open source, UI animation</strong> and looking for opportunities to work on real products with real users.</p>
+      </div>
+      <div>
+        <div class="skills-block">
+          <h3>Currently</h3>
+          <p style="color:var(--text-dim); margin:0;">Full Stack Intern @ Future Interns<br>Based in <strong style="color:var(--text)">Tamilnadu,India</strong></p>
+        </div>
+        <div class="skills-block">
+          <h3>Focus areas</h3>
+          <div class="pill-row">
+            <span class="pill">Web Apps</span>
+            <span class="pill">REST APIs</span>
+            <span class="pill">UI/UX</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="idx">02</span><h2>Skills</h2></div>
+    <div class="skills-block">
+      <h3>Frontend</h3>
+      <div class="pill-row">
+        <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript (ES6+)</span><span class="pill">React.js</span><span class="pill">Responsive Design</span>
+      </div>
+    </div>
+    <div class="skills-block">
+      <h3>Backend</h3>
+      <div class="pill-row">
+        <span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">REST APIs</span>
+      </div>
+    </div>
+    <div class="skills-block">
+      <h3>Database & Tools</h3>
+      <div class="pill-row">
+        <span class="pill">MongoDB</span><span class="pill">MySQL</span><span class="pill">Git & GitHub</span><span class="pill">VS Code</span><span class="pill">Figma</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head"><span class="idx">03</span><h2>Projects</h2></div>
+    <div class="project-list">
+
+      <div class="project">
+        <div class="project-num">01</div>
+        <div>
+          <h3>Personal Portfolio Website <span class="badge">FUTURE_FS_01</span></h3>
+          <p>This site — a responsive personal portfolio built to showcase my skills, projects, and background as a full-stack developer.</p>
+          <div class="project-tags"><span class="tag">html</span><span class="tag">css</span><span class="tag">javascript</span></div>
+          <div class="project-links">
+            <a href="#" target="_blank" rel="noopener">Live Site ↗</a>
+            <a href="#" target="_blank" rel="noopener">GitHub Repo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-num">02</div>
+        <div>
+          <h3>Client Lead Management System <span class="badge">FUTURE_FS_02</span></h3>
+          <p>A mini CRM for managing client leads captured from website contact forms — includes lead status tracking, notes, and follow-ups.</p>
+          <div class="project-tags"><span class="tag">node.js</span><span class="tag">express</span><span class="tag">mongodb</span></div>
+          <div class="project-links">
+            <a href="#" target="_blank" rel="noopener">Live Demo ↗</a>
+            <a href="#" target="_blank" rel="noopener">GitHub Repo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-num">03</div>
+        <div>
+          <h3>Local Business Website & Pitch <span class="badge">FUTURE_FS_03</span></h3>
+          <p>A professional website built for a real local business, delivered with a pitch explaining how it helps them grow online.</p>
+          <div class="project-tags"><span class="tag">wordpress</span><span class="tag">javascript</span><span class="tag">design</span></div>
+          <div class="project-links">
+            <a href="#" target="_blank" rel="noopener">Live Site ↗</a>
+            <a href="#" target="_blank" rel="noopener">GitHub Repo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-num">+</div>
+        <div>
+          <h3 style="color:var(--text-dim)">My Next Project</h3>
+          <p> Looking Forward in An AI Chatbot</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact" style="border-bottom:none;">
+  <div class="wrap contact-inner">
+    <h2>Let's build something <span class="hl">together</span>.</h2>
+    <p>I'm open to internships, freelance work, and collaboration. The fastest way to reach me is email.</p>
+    <div class="contact-links">
+      <a href="mailto:shreevdhivya08@gmail.com" class="btn btn-primary">✉ Email Me</a>
+      <a href=" github.com/shreevdhivya08-cloud/" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/dhivyashree-v-56058a381" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Dhivyashree V — 2026</div>
+</footer>
+
+</body>
+</html>
